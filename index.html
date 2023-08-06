@@ -1,51 +1,61 @@
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <title>Document with ReactJS CDN</title>
-  </head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>Document with ReactJS CDN</title>
+    </head>
 
-  <body>
-    <div id="root"></div>
-    <script
-      crossorigin
-      src="https://unpkg.com/react@18/umd/react.development.js"
-    ></script>
-    <script
-      crossorigin
-      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://unpkg.com/babel-standalone@6/babel.js"
-    ></script>
+    <body>
+        <div id="root"></div>
+        <script
+            crossorigin
+            src="https://unpkg.com/react@18/umd/react.development.js"
+        ></script>
+        <script
+            crossorigin
+            src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+        ></script>
+        <script
+            type="text/javascript"
+            src="https://unpkg.com/babel-standalone@6/babel.js"
+        ></script>
+        <script
+            crossorigin
+            src="https://unpkg.com/requirejs@2.3.6/bin/r.js"
+        ></script>
 
-    <script type="text/babel">
-      const { useState, useEffect } = React;
-      
-      // Define a component called Greetings
-      function Greetings({ p }) {
-        const [welcome, setWelcome] = useState(p);
-        // useEffect(() => {
-        //   setOk('kk');
-        // }, []);
-        const onClick = () => {
-          setWelcome(v => v === 'Hello' ? 'Hi' : 'Hello');
-        };
-        return <h1 onClick={onClick}>{welcome} readers, Thankyou for visiting !</h1>;
-      }
+        <script type="text/babel">
+            const { useState, useEffect } = React;
 
-      // Render the component to the DOM
-      ReactDOM.render(
-        <Greetings p={'Hello'} />,
-        document.getElementById("root")
-      );
-    </script>
+            // Define a component called Greetings
+            function Greetings({ p }) {
+                const [welcome, setWelcome] = useState(p);
+                // useEffect(() => {
+                //   setOk('kk');
+                // }, []);
+                const onClick = () => {
+                    setWelcome(v => v === 'Hello' ? 'Hi' : 'Hello');
+                };
+                return <h1 onClick={onClick}>{welcome} readers, Thankyou for visiting !</h1>;
+            }
 
-  </body>
+            // // Render the component to the DOM
+            // // v18
+            const container = document.getElementById('root');
+            const root = ReactDOM.createRoot(container);
+            root.render(<Greetings p={'Hello'} />);
+
+            // // v17
+            // ReactDOM.render(
+            //     <Greetings p={'Hello'} />,
+            //     document.getElementById("root")
+            // );
+        </script>
+
+    </body>
 
 </html>
