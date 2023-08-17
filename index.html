@@ -11,6 +11,7 @@
 
     <body>
         <div id="root"></div>
+        <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
         <script
             crossorigin
             src="https://unpkg.com/react@18/umd/react.development.js"
@@ -19,28 +20,38 @@
             crossorigin
             src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
         ></script>
-        <script
-            type="text/javascript"
-            src="https://unpkg.com/babel-standalone@6/babel.js"
-        ></script>
-        <script
+
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+        <!--<script
             crossorigin
             src="https://unpkg.com/requirejs@2.3.6/bin/r.js"
-        ></script>
+            ></script>-->
 
-        <script type="text/babel">
+        <!--<script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@7.12.1/dist/polyfill.min.js"></script>-->
+        <!--<script
+            type="text/javascript"
+            src="https://unpkg.com/babel-standalone@6/babel.js"
+        ></script>-->
+
+        <script
+            type="text/babel"
+            data-type="module"
+        >
+            import { ok } from './x.js';
+
             const { useState, useEffect } = React;
 
             // Define a component called Greetings
             function Greetings({ p }) {
                 const [welcome, setWelcome] = useState(p);
-                // useEffect(() => {
-                //   setOk('kk');
-                // }, []);
+                useEffect(() => {
+                    setWelcome('Hi');
+                }, []);
                 const onClick = () => {
                     setWelcome(v => v === 'Hello' ? 'Hi' : 'Hello');
                 };
-                return <h1 onClick={onClick}>{welcome} readers, Thankyou for visiting !</h1>;
+                return <h1 onClick={onClick}>{welcome} readers, Thankyou for visiting ! {ok}</h1>;
             }
 
             // // Render the component to the DOM
